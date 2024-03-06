@@ -1,36 +1,37 @@
-// assets
+// Se importa el icono IconKey desde '@tabler/icons-react'
 import { IconKey } from '@tabler/icons-react';
 
-// constant
+// Se define un objeto 'icons' que contiene el icono IconKey
 const icons = {
   IconKey
 };
 
-// ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
+// ==============================|| ELEMENTOS DEL MENÚ DE PÁGINAS EXTRA ||============================== //
 
+// Se define un objeto 'pages' que representa un grupo de páginas
 const pages = {
   id: 'pages',
-  title: 'Pages',
-  caption: 'Pages Caption',
+  title: 'Gestion de RR.HH',
+  caption: 'recursos humanos',
   type: 'group',
   children: [
     {
       id: 'authentication',
-      title: 'Authentication',
+      title: 'Autenticación',
       type: 'collapse',
       icon: icons.IconKey,
 
       children: [
         {
           id: 'login3',
-          title: 'Login',
+          title: 'Iniciar sesión',
           type: 'item',
           url: '/pages/login/login3',
           target: true
         },
         {
           id: 'register3',
-          title: 'Register',
+          title: 'Registrarse',
           type: 'item',
           url: '/pages/register/register3',
           target: true

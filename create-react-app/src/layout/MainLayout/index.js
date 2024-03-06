@@ -1,11 +1,13 @@
+// Importación de los hooks useDispatch y useSelector desde 'react-redux'
 import { useDispatch, useSelector } from 'react-redux';
+// Importación del componente Outlet desde 'react-router-dom'
 import { Outlet } from 'react-router-dom';
 
-// material-ui
+// Importación de componentes de material-ui
 import { styled, useTheme } from '@mui/material/styles';
 import { AppBar, Box, CssBaseline, Toolbar, useMediaQuery } from '@mui/material';
 
-// project imports
+// Importación de componentes personalizados
 import Breadcrumbs from 'ui-component/extended/Breadcrumbs';
 import Header from './Header';
 import Sidebar from './Sidebar';
@@ -14,10 +16,10 @@ import navigation from 'menu-items';
 import { drawerWidth } from 'store/constant';
 import { SET_MENU } from 'store/actions';
 
-// assets
+// Importación de iconos desde '@tabler/icons-react'
 import { IconChevronRight } from '@tabler/icons-react';
 
-// styles
+// Estilos personalizados para el componente Main
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' && prop !== 'theme' })(({ theme, open }) => ({
   ...theme.typography.mainContent,
   borderBottomLeftRadius: 0,
@@ -53,20 +55,25 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' && pr
 
 // ==============================|| MAIN LAYOUT ||============================== //
 
+// Definición del componente funcional MainLayout
 const MainLayout = () => {
+  // Uso del hook useTheme para acceder al tema actual
   const theme = useTheme();
+  // Uso del hook useMediaQuery para determinar si la pantalla está por debajo de 'md'
   const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
-  // Handle left drawer
+  // Estado para controlar si el cajón izquierdo está abierto
   const leftDrawerOpened = useSelector((state) => state.customization.opened);
+  // Función para alternar la apertura y cierre del cajón izquierdo
   const dispatch = useDispatch();
   const handleLeftDrawerToggle = () => {
     dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
   };
 
+  // Renderizado del componente MainLayout
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      {/* header */}
+      {/* Encabezado de la aplicación */}
       <AppBar
         enableColorOnDark
         position="fixed"
@@ -75,6 +82,7 @@ const MainLayout = () => {
         sx={{
           bgcolor: theme.palette.background.default,
           transition: leftDrawerOpened ? theme.transitions.create('width') : 'none'
+          //backgroundColor:'red'
         }}
       >
         <Toolbar>
@@ -82,12 +90,12 @@ const MainLayout = () => {
         </Toolbar>
       </AppBar>
 
-      {/* drawer */}
+      {/* Cajón lateral */}
       <Sidebar drawerOpen={!matchDownMd ? leftDrawerOpened : !leftDrawerOpened} drawerToggle={handleLeftDrawerToggle} />
 
-      {/* main content */}
+      {/* Contenido principal */}
       <Main theme={theme} open={leftDrawerOpened}>
-        {/* breadcrumb */}
+        {/* Migas de pan */}
         <Breadcrumbs separator={IconChevronRight} navigation={navigation} icon title rightAlign />
         <Outlet />
       </Main>
@@ -96,4 +104,5 @@ const MainLayout = () => {
   );
 };
 
+// Exportación por defecto del componente MainLayout
 export default MainLayout;
