@@ -125,7 +125,21 @@ const NavCollapse = ({ menu, level }) => {
           <IconChevronDown stroke={1.5} size="1rem" style={{ marginTop: 'auto', marginBottom: 'auto' }} />
         )}
       </ListItemButton>
-      <Collapse in={open} timeout="auto" unmountOnExit>
+      <Collapse
+        in={open}
+        timeout="auto"
+        unmountOnExit
+        sx={{
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // Sombra suave
+          borderRadius: '50px 0px 50px 0px', // Bordes redondeados
+          backgroundColor: 'rgba(255, 255, 255, 0.13)', // Color de fondo
+          marginTop: '10px',
+          marginBottom: '5px',
+          border: '2px solid rgba(240, 240, 241, 0.93)'
+          //padding: '16px' // Ajuste del contenido interno
+        }}
+      >
+        {/**aqui va la separacion de entre un palo y los menu-items */}
         <List
           component="div"
           disablePadding
@@ -137,7 +151,7 @@ const NavCollapse = ({ menu, level }) => {
               left: '32px',
               top: 0,
               height: '100%',
-              width: '1px',
+              width: '2px',
               opacity: 1,
               background: theme.palette.primary.light
             }
